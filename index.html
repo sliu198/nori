@@ -8,13 +8,25 @@
       animation-iteration-count:  infinite;
     }
 
+    .tail-active-frame {
+      opacity:  1;
+    }
+
+    .tail-inactive-frame {
+      opacity:  0;
+    }
+
     @keyframes blink {
       from {
         transform: matrix(1,0,0,1,0,0);
       }
 
-      95% {
+      90%{
         transform: matrix(1,0,0,1,0,0);
+      }
+
+      92.5% {
+        transform: matrix(1,0,0,.001,0,104);
       }
 
       97.5% {
@@ -37,9 +49,25 @@
    version="1.1"
    id="svg98">
   <path
-     id="path984"
-     style="fill:none;stroke:#1a1a1a;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 200,337.49078 c 23.45597,-4.54626 47.50319,-5.05148 71.3057,-4.11452 15.04143,-0.43842 30.10103,-0.21607 45.13568,-0.69449 5.48282,-1.43067 10.59927,-4.18929 16.1807,-5.4459 0.68491,-0.19726 1.37084,-0.39099 2.05759,-0.58179" />
+     id="tail-3"
+     class="tail-inactive-frame"
+     style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 200,337.49078 c 23.45597,-4.54626 43.63506,-2.35985 65.15015,-5.90894 9.87744,-1.62936 19.52935,-4.43691 29.19663,-7.03737 11.79276,-3.17221 24.53706,-6.31941 35.11627,-10.44208"/>
+  <path
+     id="tail-2"
+     class="tail-inactive-frame"
+     style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 200,337.49078 c 23.45597,-4.54626 43.02211,-6.53945 63.97244,-12.23462 10.64252,-2.89308 20.15924,-10.48663 31.17132,-11.09272 8.23809,-0.45342 16.72948,-0.69362 24.08899,5.68913"/>
+  <path
+     id="tail-1"
+     class="tail-inactive-frame"
+     style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 200,337.49078 c 23.45597,-4.54626 41.30818,-21.56433 63.9367,-23.68967 10.44409,-0.98094 21.11927,1.80862 31.02952,5.24782 9.26649,3.2158 18.45675,7.73828 25.81626,14.12103"/>
+  <path
+     id="tail-0"
+     class="tail-active-frame"
+     style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 200,337.49078 c 23.45597,-4.54626 47.51346,-3.24543 71.3057,-4.11452 15.03698,-0.54928 30.29874,1.811 45.13568,-0.69449 6.31346,-1.06615 12.33266,-4.37006 18.23829,-6.02769"/>
   <path
      id="path980"
      style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -73,5 +101,27 @@
      style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.00575;stroke-miterlimit:4;stroke-dasharray:none"
      d="m 170.65435,98.628414 c 4.59655,3.877596 4.94538,11.458956 1.35637,16.111216 -1.95257,3.01915 -3.77966,-1.49918 -4.37665,-3.36795 -1.2995,-4.33029 -0.73648,-9.77291 3.02028,-12.743266 z m 58.69142,0 c -4.59655,3.877596 -4.94538,11.458956 -1.35637,16.111216 1.95257,3.01915 3.77966,-1.49918 4.37665,-3.36795 1.2995,-4.33029 0.73648,-9.77291 -3.02028,-12.743266 z" />
 </svg>
+
+<script type="text/javascript">
+  requestAnimationFrame(step);
+
+  function step(timestamp) {
+    const activeFrame = Math.floor((timestamp % 2000) / 250);
+
+    for (let i = 0; i < 4; i++) {
+      const frame = document.querySelector(`#tail-${i}`)
+
+      if (i === activeFrame || i === 0 && activeFrame >= 4) {
+        frame.classList.remove('tail-inactive-frame');
+        frame.classList.add('tail-active-frame');
+      } else {
+        frame.classList.add('tail-inactive-frame');
+        frame.classList.remove('tail-active-frame');
+      }
+    }
+    
+    requestAnimationFrame(step);
+  }
+  
+</script>
 </body>
-</html>

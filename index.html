@@ -140,27 +140,55 @@
   let targetY = 0;
   let lookUntil = 0;
   let lastTimestamp = 0;
-  document.querySelector('#nori').addEventListener('mousemove', event => {
-    const {offsetX, offsetY} = event;
-    extendLook(offsetX, offsetY);
+  let activeTouchId = null;
+  const nori = document.querySelector('#nori');
+  nori.addEventListener('mousemove', event => {
+    const {clientX, clientY} = event;
+    extendLook(clientX, clientY);
   });
+  nori.addEventListener('touchstart', handleTouchMove);
+  nori.addEventListener('touchmove', handleTouchMove);
+  nori.addEventListener('touchend', handleTouchEnd);
+  nori.addEventListener('touchcancel', handleTouchEnd);
 
-  // make nori look at a point expressed in SVG coordinates
-  function extendLook(offsetX, offsetY) {
+  function handleTouchMove(event) {
+    event.preventDefault();
+    const {targetTouches} = event;
+    if (!activeTouchId) {
+      activeTouchId = targetTouches[0].identifier;
+    }
+    const activeTouch = [...targetTouches].find(touch => touch.identifier === activeTouchId);
+    extendLook(activeTouch.clientX, activeTouch.clientY);
+  }
+
+  function handleTouchEnd(event) {
+    event.preventDefault();
+    activeTouchId = null;
+  }
+
+
+  // make nori look at a point expressed in viewport coordinates
+  function extendLook(clientX, clientY) {
     targetX = 0;
     targetY = 0;
 
-    if (offsetX < X_MIN) {
-      targetX = offsetX - X_MIN;
-    } else if (offsetX > X_MAX) {
-      targetX = offsetX - X_MAX;
+    const {x, y, width, height} = nori.getBoundingClientRect();
+
+    // transform from client coords to SVG coords
+    const svgX = (clientX - x) * nori.width.baseVal.value / width;
+    const svgY = (clientY - y) * nori.height.baseVal.value / height;
+
+    if (svgX < X_MIN) {
+      targetX = svgX - X_MIN;
+    } else if (svgX > X_MAX) {
+      targetX = svgX - X_MAX;
     }
     targetX = targetX * 5 / 100;
 
-    if (offsetY < Y_MIN) {
-      targetY = offsetY - Y_MIN;
-    } else if (offsetY > Y_MAX) {
-      targetY = offsetY - Y_MAX;
+    if (svgY < Y_MIN) {
+      targetY = svgY - Y_MIN;
+    } else if (svgY > Y_MAX) {
+      targetY = svgY - Y_MAX;
     }
     targetY = targetY * 5 / 100;
 

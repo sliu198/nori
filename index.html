@@ -47,7 +47,7 @@
    height="400"
    viewBox="0 0 400 400"
    version="1.1"
-   id="svg98">
+   id="nori">
   <path
      id="tail-3"
      class="tail-inactive-frame"
@@ -102,10 +102,11 @@
      d="m 170.65435,98.628414 c 4.59655,3.877596 4.94538,11.458956 1.35637,16.111216 -1.95257,3.01915 -3.77966,-1.49918 -4.37665,-3.36795 -1.2995,-4.33029 -0.73648,-9.77291 3.02028,-12.743266 z m 58.69142,0 c -4.59655,3.877596 -4.94538,11.458956 -1.35637,16.111216 1.95257,3.01915 3.77966,-1.49918 4.37665,-3.36795 1.2995,-4.33029 0.73648,-9.77291 -3.02028,-12.743266 z" />
 </svg>
 
+<!-- tail animation  -->
 <script type="text/javascript">
-  requestAnimationFrame(step);
+  requestAnimationFrame(tailStep);
 
-  function step(timestamp) {
+  function tailStep(timestamp) {
     const activeFrame = Math.floor((timestamp % 2000) / 250);
 
     for (let i = 0; i < 4; i++) {
@@ -120,8 +121,100 @@
       }
     }
     
-    requestAnimationFrame(step);
+    requestAnimationFrame(tailStep);
   }
-  
 </script>
+
+<!-- eye follow -->
+<script type="text/javascript">
+  const {x: X_MIN, y: Y_MIN, width: pupilsWidth, height: pupilsHeight} = document.querySelector('#pupils').getBBox()
+  const X_MAX = X_MIN + pupilsWidth;
+  const Y_MAX = Y_MIN + pupilsHeight;
+
+  const RETURN_DELAY = 2000;
+  const TRACKING_SPEED = 1 / 20;
+
+  let currentX = 0;
+  let currentY = 0;
+  let targetX = 0;
+  let targetY = 0;
+  let lookUntil = 0;
+  let lastTimestamp = 0;
+  document.querySelector('#nori').addEventListener('mousemove', event => {
+    const {offsetX, offsetY} = event;
+    extendLook(offsetX, offsetY);
+  });
+
+  // make nori look at a point expressed in SVG coordinates
+  function extendLook(offsetX, offsetY) {
+    targetX = 0;
+    targetY = 0;
+
+    if (offsetX < X_MIN) {
+      targetX = offsetX - X_MIN;
+    } else if (offsetX > X_MAX) {
+      targetX = offsetX - X_MAX;
+    }
+    targetX = targetX * 5 / 100;
+
+    if (offsetY < Y_MIN) {
+      targetY = offsetY - Y_MIN;
+    } else if (offsetY > Y_MAX) {
+      targetY = offsetY - Y_MAX;
+    }
+    targetY = targetY * 5 / 100;
+
+    const targetDist = dist(targetX, targetY);
+    if (targetDist > 5) {
+      targetX = targetX * 5 / targetDist;
+      targetY = targetY * 5 /targetDist;
+    }
+
+    lookUntil = Date.now() + RETURN_DELAY;
+
+    // start animation
+    if (!lastTimestamp) {
+      lastTimestamp = Date.now();
+      requestAnimationFrame(lookStep);
+    }
+  }
+
+  function lookStep() {
+    const timestamp = Date.now();
+    if (timestamp > lookUntil) {
+      // stop animating if back to neutral
+      if (currentX === 0 && currentY === 0) {
+        lastTimestamp = 0;
+        lookUntil = 0;
+        return;
+      }
+
+      targetX = 0;
+      targetY = 0;
+      lastTimestamp = lookUntil;
+    }
+
+    // move a max of 1px / 20s
+    const diffT = timestamp - lastTimestamp;
+    const diffX = targetX - currentX;
+    const diffY = targetY - currentY;
+    const diff = dist(diffX, diffY);
+    if (diff > diffT * TRACKING_SPEED) {
+      currentX += diffX * diffT * TRACKING_SPEED / diff
+      currentY += diffY * diffT * TRACKING_SPEED / diff
+    } else {
+      currentX = targetX;
+      currentY = targetY;
+    }
+
+    document.querySelector('#pupils').style.transform = `matrix(1,0,0,1,${currentX},${currentY})`;
+    lastTimestamp = timestamp;
+    requestAnimationFrame(lookStep);
+  }
+
+  function dist(dX, dY) {
+    return Math.sqrt(Math.pow(dX, 2) + Math.pow(dY, 2));
+  }
+</script>
+
 </body>

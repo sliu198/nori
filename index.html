@@ -1,43 +1,6 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style type="text/css"> 
-    #eyes {
-      animation-duration: 5s;
-      animation-name:  blink;
-      animation-iteration-count:  infinite;
-    }
-
-    .tail-active-frame {
-      opacity:  1;
-    }
-
-    .tail-inactive-frame {
-      opacity:  0;
-    }
-
-    @keyframes blink {
-      from {
-        transform: matrix(1,0,0,1,0,0);
-      }
-
-      90%{
-        transform: matrix(1,0,0,1,0,0);
-      }
-
-      92.5% {
-        transform: matrix(1,0,0,.001,0,104);
-      }
-
-      97.5% {
-        transform: matrix(1,0,0,.001,0,104);
-      }
-
-      to {
-        transform: matrix(1,0,0,1,0,0);
-      }
-    }
-  </style>
 </head>
 <body>
 <svg
@@ -49,32 +12,31 @@
    version="1.1"
    id="nori">
   <path
-     id="tail"
-     class="tail-active-frame"
+     id="tail-back"
      style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 200,335 c 19.1893,-1.8796 33.271,-4.16563 50,-5 14.98138,-0.74721 30.08957,-1.63675 45,0 15.27416,1.67668 33.6036,5.34873 45,10"/>
+     d="m 200,330 c 0,0 26.95305,1.78557 40,5 13.82655,3.4065 39.25362,0.77957 40,15"/>
   <path
-     id="path980"
+     id="body-back"
      style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      d="m 200,358.63009 c -17.3634,-0.4308 -35.18197,0.46349 -52.07846,-4.17984 -11.24733,-3.12078 4.93776,-10.77804 3.65274,-12.04699 -15.63213,-4.65967 -21.60525,-22.63286 -21.95988,-37.40343 0.76101,-15.81148 12.86171,-27.59898 20.90267,-40.25967 -4.13814,-18.91058 -4.26633,-38.88743 -0.1246,-57.91142 5.0606,-22.60656 14.11557,-45.84406 32.19872,-61.20218 4.94668,-4.12795 20.48058,-12.53815 17.40875,-0.0691 2e-5,71.02421 4e-5,142.04842 6e-5,213.07263 2e-5,-73.29326 4e-5,-146.58653 6e-5,-219.87979 16.2345,0.83783 27.18161,15.25188 34.82257,28.15482 16.08702,29.20467 22.27073,64.5368 14.51277,97.17482 7.37471,12.74806 19.45577,23.96853 21.03751,39.41648 0.005,14.84981 -5.40306,32.90167 -20.68095,38.51278 -6.31995,1.00262 15.1731,8.90898 2.3865,12.44105 -16.84682,4.64186 -34.76083,3.7494 -52.07846,4.17984 z" />
   <path
-     id="path970"
+     id="body-front"
      style="display:inline;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:1.02344px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      d="m 199.99995,138.7503 c -15.69492,1.2065 -29.33871,19.04527 -40.14148,38.7389 -7.70396,15.18005 -15.65417,33.50032 -15.73172,55.25978 1.50763,15.32792 5.4872,29.50595 8.85665,43.71238 7.51157,27.98225 16.11843,56.29892 29.41271,76.37568 3.99827,5.68461 12.70682,14.43872 15.58499,2.49087 0.46197,-15.84457 -4.00927,-30.43232 -6.40513,-45.28977 -2.69231,-15.93603 -6.71921,-33.14483 -3.88388,-49.87245 3.05783,-13.1295 12.59576,-13.43455 18.9799,-9.83377 7.30978,4.59265 7.39589,21.35297 5.94048,32.88441 -2.29262,23.29958 -9.01569,44.40469 -10.73593,67.89197 -0.74531,14.28152 9.23703,10.76329 13.17474,4.94851 13.02094,-16.47631 21.24564,-42.42552 28.67887,-67.45704 4.7386,-17.41077 9.43076,-35.21483 12.06159,-54.12093 0.59927,-21.45187 -7.23136,-39.86669 -14.61254,-55.00017 -10.93277,-20.57082 -25.01859,-39.48998 -41.17925,-40.72837 z" />
   <path
-     id="path124"
+     id="face"
      style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.00595"
      d="m 199.99994,54.000365 c -9.78707,0.115971 -19.61081,3.438105 -29.34559,1.603397 -10.04166,-6.439431 -19.783,-13.37742 -30.02843,-19.47865 -4.79748,-3.129517 -14.92648,-5.53217 -15.57393,2.842668 0.31547,8.693986 2.88729,17.140852 4.29975,25.708832 1.32111,8.24678 3.56377,16.269231 6.02212,24.239181 3.35177,10.694501 5.88768,21.624717 9.03009,32.371447 6.59739,19.43088 23.25782,36.43446 44.15074,39.2353 14.49638,1.67887 30.29201,1.04189 42.72642,-7.48243 14.61536,-9.21204 23.62886,-25.21488 27.11103,-41.83547 3.09375,-12.737383 7.43358,-25.147118 10.55873,-37.863935 1.95814,-10.935431 4.6718,-21.75832 6.04098,-32.782392 1.06843,-8.315678 -8.70621,-8.743508 -13.82815,-5.333508 -9.47005,5.086228 -18.0976,11.602413 -27.18852,17.331404 -3.0481,2.176285 -6.25357,4.464218 -10.28485,3.65433 -7.94051,-0.20795 -15.75888,-1.9211 -23.69039,-2.210174 z" />
   <path
-     id="path122"
+     id="nose"
      style="display:inline;opacity:1;fill:#808080;fill-opacity:1;stroke-width:1.00595"
      d="m 199.99994,131.57806 c -2.34975,1e-4 -4.69949,2.1e-4 -7.04924,3.1e-4 2.34975,2.39064 4.69949,4.78129 7.04924,7.17193 2.34975,-2.39064 4.69949,-4.78129 7.04924,-7.17193 -2.34975,-1e-4 -4.69949,-2.1e-4 -7.04924,-3.1e-4 z" />
   <path
-     id="path116"
+     id="whiskers-bottom"
      style="display:inline;fill:none;stroke:#000000;stroke-width:2.25;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      d="m 143.41464,175.97181 c 3.60089,-9.70473 10.85499,-17.64487 18.66206,-24.22693 3.48194,-2.73316 7.2674,-5.34459 11.61806,-6.43736 m 82.89072,30.66429 c -3.60089,-9.70473 -10.85499,-17.64487 -18.66206,-24.22693 -3.48194,-2.73316 -7.2674,-5.34459 -11.61806,-6.43736" />
   <path
-     id="path114"
+     id="whiskers-top"
      style="display:inline;fill:none;stroke:#000000;stroke-width:2.25;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      d="m 133.40932,158.28781 c 7.0143,-6.4929 16.14686,-10.08552 24.90334,-13.59174 4.33897,-1.55971 8.75951,-3.06335 13.35516,-3.6321 m 94.92298,17.22384 c -7.01431,-6.4929 -16.14687,-10.08552 -24.90334,-13.59174 -4.33897,-1.55971 -8.75951,-3.06335 -13.35516,-3.6321" />
   <path
@@ -85,208 +47,240 @@
      id="pupils"
      style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.00575;stroke-miterlimit:4;stroke-dasharray:none"
      d="m 170.65435,98.628414 c 4.59655,3.877596 4.94538,11.458956 1.35637,16.111216 -1.95257,3.01915 -3.77966,-1.49918 -4.37665,-3.36795 -1.2995,-4.33029 -0.73648,-9.77291 3.02028,-12.743266 z m 58.69142,0 c -4.59655,3.877596 -4.94538,11.458956 -1.35637,16.111216 1.95257,3.01915 3.77966,-1.49918 4.37665,-3.36795 1.2995,-4.33029 0.73648,-9.77291 -3.02028,-12.743266 z" />
+  <path
+     id="tail-front"
+     style="display:inline;fill:none;stroke:#1a1a1a;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 280,350 c 0.78135,14.88663 -40,20 -40,20"/>
 </svg>
 
-<!-- tail animation  -->
+<!-- tail twitch -->
 <script type="text/javascript">
-  const TAIL_FRAMES = [
-    [
-      'm',
-      '200,335',
-      'c',
-      '19.1893,-1.8796',
-      '33.271,-4.16563',
-      '50,-5',
-      '14.98138,-0.74721',
-      '30.08957,-1.63675',
-      '45,0',
-      '15.27416,1.67668',
-      '33.6036,5.34873',
-      '45,10'
-    ],
-    [
-      'm',
-      '200,335',
-      'c',
-      '19.1893,-1.8796',
-      '33.271,-4.16563',
-      '50,-5',
-      '14.98138,-0.74721',
-      '30.08957,-1.63675',
-      '45,0',
-      '15.27416,1.67668',
-      '33.6036,-3.71794',
-      '45,-11.33333'
+  (() => {
+    const TAIL_FRAMES = [
+      "m 280,350 c 0.78135,14.88663 -40,20 -40,20",
+      "m 280,350 c 0.78135,14.88663 -35,5 -30,-10",
     ]
-  ]
 
-  let wagStart;
-  scheduleNextWag(0, 0);
+    let twitchStart;
+    scheduleNextTwitch(0);
 
-  function scheduleNextWag(wagEnd, now) {
-    let delay = (Math.exp(randNorm() * .5 + .5) - 1) * 1000;
-    if (delay < 0) {
-      delay = 0;
+    function scheduleNextTwitch(timestamp) {
+      // exponential distribution, expected value 15s
+      const delay = -Math.log(Math.random()) * 15000
+
+      twitchStart = timestamp + delay;
+      setTimeout(() => requestAnimationFrame(step), delay);
     }
-    wagStart = wagEnd + delay;
-    console.log('scheduled', wagStart - now);
-    setTimeout(() => requestAnimationFrame(tailStep), wagStart - now);
-  }
 
-  function tailStep(timestamp) {
-    console.log(timestamp);
-    const activeFrame = (timestamp - wagStart) / 250;
-    const frameStartNumber = Math.floor(activeFrame)
-    let frameCurve;
-    
-    if (frameStartNumber > 1 || frameStartNumber < 0) {
-      frameCurve = TAIL_FRAMES[0].join(' ');
-    } else {
-      const frameStart = TAIL_FRAMES[frameStartNumber];
-      const frameEnd = TAIL_FRAMES[(frameStartNumber + 1) % 2];
-      const frameFraction = (activeFrame - frameStartNumber);
+    function step(timestamp) {
+      const progress = (timestamp - twitchStart) / 500;
+      let path;
 
-      frameCurve = frameStart.map((startToken, index) => {
-        if (['m', 'c'].includes(startToken)) return startToken;
+      if (progress <= 0 || progress >= 1) {
+        path = TAIL_FRAMES[0];
+      } else if (progress < 10 / 17) {
+        const t = progress * 17 / 10;
+        const x = t < .5
+          ? 2 * Math.pow(t, 2)
+          : 1 - 2 * Math.pow(1 - t, 2);
+        path = getIntermediateFrame(TAIL_FRAMES[0], TAIL_FRAMES[1], x);
+      } else {
+        const t = (progress - 10 / 17) * 17 / 7;
+        const x = Math.pow(t, 2);
+        path = getIntermediateFrame(TAIL_FRAMES[1], TAIL_FRAMES[0], x);
+      }
 
-        [startX, startY] = startToken.split(',').map(t => Number(t));
-        [endX, endY] = frameEnd[index].split(',').map(t => Number(t));
-        return [startX + (endX - startX) * frameFraction, startY + (endY - startY) * frameFraction].join(',');
+      document.querySelector('#tail-front').setAttribute('d', path);
+
+      if (progress >= 1) {
+        scheduleNextTwitch(timestamp);
+      } else {
+        requestAnimationFrame(step);
+      }
+    }
+
+    function getIntermediateFrame(start, end, progress) {
+      const startElements = start.split(' ');
+      const endElements = end.split(' ');
+
+      return startElements.map((startElement, index) => {
+        if (['m', 'c'].includes(startElement)) return startElement;
+
+        const [startX, startY] = startElement.split(',').map(e => Number(e));
+        const [endX, endY] = endElements[index].split(',').map(e => Number(e));
+
+        return [startX + (endX - startX) * progress, startY + (endY - startY) * progress].join(',');
       }).join(' ');
     }
+  })();
+</script>
 
-    document.querySelector('#tail').setAttribute('d', frameCurve);
+<!-- blink -->
+<script type="text/javascript">
+  (() => {
+    let blinkStart;
+    scheduleNextBlink(0);
 
-    if (frameStartNumber < 2) {
-      requestAnimationFrame(tailStep);
-    } else {
-      scheduleNextWag(wagStart + 500, timestamp);
+    function scheduleNextBlink(timestamp) {
+      // exponential distribution, expected value 15s
+      const delay = -Math.log(Math.random()) * 15000
+
+      blinkStart = timestamp + delay;
+      setTimeout(() => requestAnimationFrame(step), delay);
     }
-  }
 
-  function randNorm() {
-    return Array(12).fill().map(() => Math.random()).reduce((a,v) => a + v) - 6
-  }
+    function step(timestamp) {
+      const progress = (timestamp - blinkStart) / 1000;
+      let scale, translate;
+
+      if (progress <= 0 || progress >= 1) {
+        scale = 1;
+        translate = 0;
+      } else if (progress < .25) {
+        scale = 1 - 8 * Math.pow(progress, 2);
+        translate = 104 * (1 - scale);
+      } else if (progress < .75) {
+        scale = 8 * Math.pow(progress - .5, 2);
+        translate = 104 * (1 - scale);
+      } else {
+        scale = 1 - 8 * Math.pow(progress - 1, 2);
+        translate = 104 * (1 - scale);
+      }
+
+      if (scale === 0) scale = .001;
+
+      document.querySelector('#eyes').style.transform = `matrix(1,0,0,${scale},0,${translate})`;
+
+      if (progress >= 1) {
+        scheduleNextBlink(timestamp)
+      } else {
+        requestAnimationFrame(step);
+      }
+    }
+  })()
+  
 </script>
 
 <!-- eye follow -->
 <script type="text/javascript">
-  const {x: X_MIN, y: Y_MIN, width: pupilsWidth, height: pupilsHeight} = document.querySelector('#pupils').getBBox()
-  const X_MAX = X_MIN + pupilsWidth;
-  const Y_MAX = Y_MIN + pupilsHeight;
+  (() => {
+    const {x: X_MIN, y: Y_MIN, width: pupilsWidth, height: pupilsHeight} = document.querySelector('#pupils').getBBox()
+    const X_MAX = X_MIN + pupilsWidth;
+    const Y_MAX = Y_MIN + pupilsHeight;
 
-  const RETURN_DELAY = 2000;
-  const TRACKING_SPEED = 1 / 20;
+    const RETURN_DELAY = 2000;
+    const TRACKING_SPEED = 1 / 20;
 
-  let currentX = 0;
-  let currentY = 0;
-  let targetX = 0;
-  let targetY = 0;
-  let lookUntil = 0;
-  let lastTimestamp = 0;
-  let activeTouchId = null;
-  const nori = document.querySelector('#nori');
-  nori.addEventListener('mousemove', event => {
-    const {clientX, clientY} = event;
-    extendLook(clientX, clientY);
-  });
-  nori.addEventListener('touchstart', handleTouchMove);
-  nori.addEventListener('touchmove', handleTouchMove);
-  nori.addEventListener('touchend', handleTouchEnd);
-  nori.addEventListener('touchcancel', handleTouchEnd);
+    let currentX = 0;
+    let currentY = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let lookUntil = 0;
+    let lastTimestamp = 0;
+    let activeTouchId = null;
+    const nori = document.querySelector('#nori');
+    nori.addEventListener('mousemove', event => {
+      const {clientX, clientY} = event;
+      extendLook(clientX, clientY);
+    });
+    nori.addEventListener('touchstart', handleTouchMove);
+    nori.addEventListener('touchmove', handleTouchMove);
+    nori.addEventListener('touchend', handleTouchEnd);
+    nori.addEventListener('touchcancel', handleTouchEnd);
 
-  function handleTouchMove(event) {
-    event.preventDefault();
-    const {targetTouches} = event;
-    if (!activeTouchId) {
-      activeTouchId = targetTouches[0].identifier;
-    }
-    const activeTouch = [...targetTouches].find(touch => touch.identifier === activeTouchId);
-    extendLook(activeTouch.clientX, activeTouch.clientY);
-  }
-
-  function handleTouchEnd(event) {
-    event.preventDefault();
-    activeTouchId = null;
-  }
-
-
-  // make nori look at a point expressed in viewport coordinates
-  function extendLook(clientX, clientY) {
-    targetX = 0;
-    targetY = 0;
-
-    const {x, y, width, height} = nori.getBoundingClientRect();
-
-    // transform from client coords to SVG coords
-    const svgX = (clientX - x) * nori.width.baseVal.value / width;
-    const svgY = (clientY - y) * nori.height.baseVal.value / height;
-
-    if (svgX < X_MIN) {
-      targetX = svgX - X_MIN;
-    } else if (svgX > X_MAX) {
-      targetX = svgX - X_MAX;
-    }
-    targetX = targetX * 5 / 100;
-
-    if (svgY < Y_MIN) {
-      targetY = svgY - Y_MIN;
-    } else if (svgY > Y_MAX) {
-      targetY = svgY - Y_MAX;
-    }
-    targetY = targetY * 5 / 100;
-
-    const targetDist = dist(targetX, targetY);
-    if (targetDist > 5) {
-      targetX = targetX * 5 / targetDist;
-      targetY = targetY * 5 /targetDist;
-    }
-
-    lookUntil = Date.now() + RETURN_DELAY;
-
-    // start animation
-    if (!lastTimestamp) {
-      lastTimestamp = Date.now();
-      requestAnimationFrame(lookStep);
-    }
-  }
-
-  function lookStep() {
-    const timestamp = Date.now();
-    if (timestamp > lookUntil) {
-      // stop animating if back to neutral
-      if (currentX === 0 && currentY === 0) {
-        lastTimestamp = 0;
-        lookUntil = 0;
-        return;
+    function handleTouchMove(event) {
+      event.preventDefault();
+      const {targetTouches} = event;
+      if (!activeTouchId) {
+        activeTouchId = targetTouches[0].identifier;
       }
+      const activeTouch = [...targetTouches].find(touch => touch.identifier === activeTouchId);
+      extendLook(activeTouch.clientX, activeTouch.clientY);
+    }
 
+    function handleTouchEnd(event) {
+      event.preventDefault();
+      activeTouchId = null;
+    }
+
+
+    // make nori look at a point expressed in viewport coordinates
+    function extendLook(clientX, clientY) {
       targetX = 0;
       targetY = 0;
-      lastTimestamp = lookUntil;
+
+      const {x, y, width, height} = nori.getBoundingClientRect();
+
+      // transform from client coords to SVG coords
+      const svgX = (clientX - x) * nori.width.baseVal.value / width;
+      const svgY = (clientY - y) * nori.height.baseVal.value / height;
+
+      if (svgX < X_MIN) {
+        targetX = svgX - X_MIN;
+      } else if (svgX > X_MAX) {
+        targetX = svgX - X_MAX;
+      }
+      targetX = targetX * 5 / 100;
+
+      if (svgY < Y_MIN) {
+        targetY = svgY - Y_MIN;
+      } else if (svgY > Y_MAX) {
+        targetY = svgY - Y_MAX;
+      }
+      targetY = targetY * 5 / 100;
+
+      const targetDist = dist(targetX, targetY);
+      if (targetDist > 5) {
+        targetX = targetX * 5 / targetDist;
+        targetY = targetY * 5 /targetDist;
+      }
+
+      lookUntil = Date.now() + RETURN_DELAY;
+
+      // start animation
+      if (!lastTimestamp) {
+        lastTimestamp = Date.now();
+        requestAnimationFrame(lookStep);
+      }
     }
 
-    // move a max of 1px / 20s
-    const diffT = timestamp - lastTimestamp;
-    const diffX = targetX - currentX;
-    const diffY = targetY - currentY;
-    const diff = dist(diffX, diffY);
-    if (diff > diffT * TRACKING_SPEED) {
-      currentX += diffX * diffT * TRACKING_SPEED / diff
-      currentY += diffY * diffT * TRACKING_SPEED / diff
-    } else {
-      currentX = targetX;
-      currentY = targetY;
+    function lookStep() {
+      const timestamp = Date.now();
+      if (timestamp > lookUntil) {
+        // stop animating if back to neutral
+        if (currentX === 0 && currentY === 0) {
+          lastTimestamp = 0;
+          lookUntil = 0;
+          return;
+        }
+
+        targetX = 0;
+        targetY = 0;
+        lastTimestamp = lookUntil;
+      }
+
+      // move a max of 1px / 20s
+      const diffT = timestamp - lastTimestamp;
+      const diffX = targetX - currentX;
+      const diffY = targetY - currentY;
+      const diff = dist(diffX, diffY);
+      if (diff > diffT * TRACKING_SPEED) {
+        currentX += diffX * diffT * TRACKING_SPEED / diff
+        currentY += diffY * diffT * TRACKING_SPEED / diff
+      } else {
+        currentX = targetX;
+        currentY = targetY;
+      }
+
+      document.querySelector('#pupils').style.transform = `matrix(1,0,0,1,${currentX},${currentY})`;
+      lastTimestamp = timestamp;
+      requestAnimationFrame(lookStep);
     }
 
-    document.querySelector('#pupils').style.transform = `matrix(1,0,0,1,${currentX},${currentY})`;
-    lastTimestamp = timestamp;
-    requestAnimationFrame(lookStep);
-  }
-
-  function dist(dX, dY) {
-    return Math.sqrt(Math.pow(dX, 2) + Math.pow(dY, 2));
-  }
+    function dist(dX, dY) {
+      return Math.sqrt(Math.pow(dX, 2) + Math.pow(dY, 2));
+    }
+  })();
 </script>
 
 </body>

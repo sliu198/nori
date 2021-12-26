@@ -1,22 +1,14 @@
+import AnimationCoordinator from "./animation-coordinator.js";
 
 const TAIL_FRAMES = [
   "m 280,350 c 0.78135,14.88663 -40,20 -40,20",
   "m 280,350 c 0.78135,14.88663 -35,5 -30,-10",
 ];
 
-let twitchStart;
-
-export function requestTwitch() {
-  if (twitchStart) {
-    return;
-  }
-
-  twitchStart = performance.now();
-  requestAnimationFrame(step);
-}
+export default new AnimationCoordinator(step);
 
 function step(timestamp) {
-  const progress = (timestamp - twitchStart) / 500;
+  const progress = timestamp / 500;
   let path;
 
   if (progress <= 0 || progress >= 1) {
@@ -33,11 +25,7 @@ function step(timestamp) {
 
   document.querySelector("#tail-front").setAttribute("d", path);
 
-  if (progress < 1) {
-    requestAnimationFrame(step);
-  } else {
-    twitchStart = undefined;
-  }
+  return progress >= 1;
 }
 
 function getIntermediateFrame(start, end, progress) {

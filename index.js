@@ -1,5 +1,5 @@
-import {requestBlink} from "./modules/blink.js";
-import {requestTwitch} from "./modules/tail-twitch.js";
+import blink from "./modules/blink.js";
+import tailTwitch from "./modules/tail-twitch.js";
 import "./modules/eye-follow.js";
 
 randomBlink();
@@ -8,7 +8,7 @@ randomTailTwitch();
 function randomBlink() {
   const delay = -Math.log(Math.random()) * 15000;
   setTimeout(() => {
-    requestBlink();
+    blink.requestAnimationStart();
     randomBlink();
   }, delay);
 }
@@ -16,7 +16,7 @@ function randomBlink() {
 function randomTailTwitch() {
   const delay = -Math.log(Math.random()) * 15000;
   setTimeout(() => {
-    requestTwitch();
+    tailTwitch.requestAnimationStart();
     randomTailTwitch();
   }, delay);
 }

@@ -1,16 +1,9 @@
-let blinkStart;
+import AnimationCoordinator from "./animation-coordinator.js";
 
-export function requestBlink() {
-  if (blinkStart) {
-    return;
-  }
-
-  blinkStart = performance.now();
-  requestAnimationFrame(step);
-}
+export default new AnimationCoordinator(step);
 
 function step(timestamp) {
-  const progress = (timestamp - blinkStart) / 1000;
+  const progress = timestamp / 1000;
   let scale, translate;
 
   if (progress <= 0 || progress >= 1) {
@@ -33,9 +26,5 @@ function step(timestamp) {
     "#eyes"
   ).style.transform = `matrix(1,0,0,${scale},0,${translate})`;
 
-  if (progress < 1) {
-    requestAnimationFrame(step);
-  } else {
-    blinkStart = undefined;
-  }
+  return progress >= 1;
 }

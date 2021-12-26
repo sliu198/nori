@@ -1,12 +1,12 @@
 let blinkStart;
-scheduleNextBlink(0);
 
-function scheduleNextBlink(timestamp) {
-  // exponential distribution, expected value 15s
-  const delay = -Math.log(Math.random()) * 15000;
+export function requestBlink() {
+  if (blinkStart) {
+    return;
+  }
 
-  blinkStart = timestamp + delay;
-  setTimeout(() => requestAnimationFrame(step), delay);
+  blinkStart = performance.now();
+  requestAnimationFrame(step);
 }
 
 function step(timestamp) {
@@ -33,9 +33,9 @@ function step(timestamp) {
     "#eyes"
   ).style.transform = `matrix(1,0,0,${scale},0,${translate})`;
 
-  if (progress >= 1) {
-    scheduleNextBlink(timestamp);
-  } else {
+  if (progress < 1) {
     requestAnimationFrame(step);
+  } else {
+    blinkStart = undefined;
   }
 }

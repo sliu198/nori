@@ -5,14 +5,14 @@ const TAIL_FRAMES = [
 ];
 
 let twitchStart;
-scheduleNextTwitch(0);
 
-function scheduleNextTwitch(timestamp) {
-  // exponential distribution, expected value 15s
-  const delay = -Math.log(Math.random()) * 15000;
+export function requestTwitch() {
+  if (twitchStart) {
+    return;
+  }
 
-  twitchStart = timestamp + delay;
-  setTimeout(() => requestAnimationFrame(step), delay);
+  twitchStart = performance.now();
+  requestAnimationFrame(step);
 }
 
 function step(timestamp) {
@@ -33,10 +33,10 @@ function step(timestamp) {
 
   document.querySelector("#tail-front").setAttribute("d", path);
 
-  if (progress >= 1) {
-    scheduleNextTwitch(timestamp);
-  } else {
+  if (progress < 1) {
     requestAnimationFrame(step);
+  } else {
+    twitchStart = undefined;
   }
 }
 

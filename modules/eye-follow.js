@@ -1,3 +1,5 @@
+import TouchMoveAdapter from "./touch-move-adapter.js";
+
 const {
   x: X_MIN,
   y: Y_MIN,
@@ -17,35 +19,11 @@ let targetY = 0;
 let lookUntil = 0;
 let lastTimestamp = 0;
 let activeTouchId = null;
-const nori = document.querySelector("#nori");
-nori.addEventListener("mousemove", (event) => {
-  const { clientX, clientY } = event;
-  extendLook(clientX, clientY);
-});
-nori.addEventListener("touchstart", handleTouchMove);
-nori.addEventListener("touchmove", handleTouchMove);
-nori.addEventListener("touchend", handleTouchEnd);
-nori.addEventListener("touchcancel", handleTouchEnd);
-
-function handleTouchMove(event) {
-  event.preventDefault();
-  const { targetTouches } = event;
-  if (!activeTouchId) {
-    activeTouchId = targetTouches[0].identifier;
-  }
-  const activeTouch = [...targetTouches].find(
-    (touch) => touch.identifier === activeTouchId
-  );
-  extendLook(activeTouch.clientX, activeTouch.clientY);
-}
-
-function handleTouchEnd(event) {
-  event.preventDefault();
-  activeTouchId = null;
-}
+const nori = document.getElementById("nori");
+new TouchMoveAdapter(extendLook).attach(nori);
 
 // make nori look at a point expressed in viewport coordinates
-function extendLook(clientX, clientY) {
+function extendLook({clientX, clientY}) {
   targetX = 0;
   targetY = 0;
 

@@ -41,6 +41,5 @@ function headPat() {
       blink.requestAnimationStart();
       nextHeart = -Math.log(Math.random()) * 5000;
     }
-    console.log(nextHeart);
   }).attach(document.getElementById('face'));
 }

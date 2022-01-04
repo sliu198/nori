@@ -4,7 +4,7 @@ const hearts = new Map();
 
 export function requestHeart(x, y) {
   const newHeart = new Image(40, 30);
-  newHeart.src = '../heart.svg';
+  newHeart.src = './heart.svg';
   const createdAt = performance.now();
   const left = x - 20;
   const top = y - 30;
